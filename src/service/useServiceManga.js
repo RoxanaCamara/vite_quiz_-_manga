@@ -8,9 +8,13 @@ export const useServiceManga = () => {
         headers: { 'X-Custom-Header': 'foobar' }
     });
 
-    const get = () => {
-        return instance.get('');
+    const getManga = (title) => {
+        return instance.get('/manga', {
+            params: {
+                title
+            }
+        });
     };
 
-    return { get };
+    return { getManga };
 };
