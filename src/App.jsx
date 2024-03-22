@@ -1,20 +1,15 @@
-
-import { useService } from './service/service';
+import { useService } from "./service/service";
 
 function App() {
-  
+  const { getManga } = useService();
 
- const  {getManga} =  useService()
-
-
-
-console.log(getManga());
+  console.log(getManga());
 
   return (
     <>
       <button>Linux </button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,7 +1,3 @@
-
-
 export const Navigation = () => {
-  return (
-    <div>Navigation</div>
-  )
-}
+  return <div>Navigation</div>;
+};
