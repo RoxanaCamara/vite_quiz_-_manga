@@ -1,9 +1,9 @@
-import { Navigation } from './components/navigation/Navigation';
+import { Manga } from './container/manga/Manga';
 
 function App() {
     return (
         <>
-            <Navigation />
+            <Manga />
         </>
     );
 }
