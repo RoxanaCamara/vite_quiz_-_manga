@@ -6,7 +6,7 @@ import {
 } from '../helper/constantes';
 
 export const useServiceManga = () => {
-    const login = async () => {
+    const postLogin = async () => {
         return await axios({
             method: 'POST',
             url: VITE_CONNECTION_TOKEN,
@@ -25,6 +25,7 @@ export const useServiceManga = () => {
         }
     });
 
+    /**Obtengo informacion de los mangas segun el title */
     const getManga = async (title) => {
         return await instance
             .get('/manga', {
@@ -38,12 +39,21 @@ export const useServiceManga = () => {
             .catch((error) => error);
     };
 
-    const getChapter = async (id) => {
+    /**Obtengo informacion de los mangas segun el title */
+    const getMangaConMasRanting = async () => {
+        const order = {
+            rating: 'desc',
+            followedCount: 'desc'
+        };
+        const finalOrderQuery = {};
+
+        // { "order[rating]": "desc", "order[followedCount]": "desc" }
+        for (const [key, value] of Object.entries(order)) {
+            finalOrderQuery[`order[${key}]`] = value;
+        }
         return await instance
-            .get(`/manga${id}/feed?includeFuturePublishAt=1`, {
-                params: {
-                    id
-                }
+            .get('/manga', {
+                params: finalOrderQuery
             })
             .then((e) => {
                 return e;
@@ -51,5 +61,42 @@ export const useServiceManga = () => {
             .catch((error) => error);
     };
 
-    return { getManga, login, getChapter };
+    /* Obtengo los id de los capitulos de un id manga */
+    const getIdsChapters = async (id) => {
+        return await instance
+            .get(`/manga/${id}/feed`)
+            .then((resp) => {
+                return resp.data.data.map((chapter) => chapter.id);
+            })
+            .catch((error) => error);
+    };
+
+    /* Obtengo los id de la pagina */
+    const getIdsPages = async (chapterID) => {
+        return await instance
+            .get(`/at-home/server/${chapterID}/`)
+            .then((resp) => {
+                return resp;
+            })
+            .catch((error) => error);
+    };
+
+    /* Obtengo la imagen del servidor */
+    const getPageImage = async (host, chapterHash, page) => {
+        return await instance
+            .get(`${host}/data/${chapterHash}/${page}`)
+            .then((e) => {
+                return e;
+            })
+            .catch((error) => error);
+    };
+
+    return {
+        postLogin,
+        getManga,
+        getIdsChapters,
+        getIdsPages,
+        getPageImage,
+        getMangaConMasRanting
+    };
 };

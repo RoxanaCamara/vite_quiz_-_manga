@@ -16,6 +16,4 @@ How to start Cypress
 
 Un proyecto conjunto de cosas que quiero poner a prueba.
 
-Quiz
-
 manga
