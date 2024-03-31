@@ -12,8 +12,13 @@ export const useLanguage = () => {
         );
 
         //let languageTranslate = !language ? 'en' : language;
-        const { title, description } = obj.attributes;
-        return { title: title.en, description: description.en, id: obj.id };
+        const { title, description, relationships } = obj.attributes;
+        return {
+            title: title.en,
+            description: description.en,
+            id: obj.id,
+            relationships
+        };
     };
     return { getMangaLanguage };
 };

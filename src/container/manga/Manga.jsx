@@ -8,14 +8,6 @@ export const Manga = () => {
     //const [login, setLogin] = useState({});
     const [mangasList, setMangasList] = useState([]);
 
-    console.log(
-        '🚀 ---------------------------------------------------------🚀'
-    );
-    console.log('🚀 ~ file: Manga.jsx:11 ~ Manga ~ mangasList:', mangasList);
-    console.log(
-        '🚀 ---------------------------------------------------------🚀'
-    );
-
     //const [manga, setManga] = useState({});
     //const [chapterIdList, setChapterIdList] = useState([]);
     //const [pageIdList, setPageIdList] = useState({});
