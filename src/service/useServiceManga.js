@@ -106,6 +106,7 @@ export const useServiceManga = () => {
         getIdsChapters,
         getIdsPages,
         getPageImage,
-        getMangaConMasRanting
+        getMangaConMasRanting,
+        getCoverImageManga
     };
 };

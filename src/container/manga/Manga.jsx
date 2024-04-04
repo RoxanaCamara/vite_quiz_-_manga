@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
 import { useServiceManga } from '../../service/useServiceManga';
-import { Card } from '../../components/card/Card';
+
 import { useLanguage } from '../../hooks/useLanguage';
+import { Section } from '../../components/section/Section';
 
 export const Manga = () => {
     //const [login, setLogin] = useState({});
-    const [mangasList, setMangasList] = useState([]);
+    const [mangasList, setMangasList] = useState({
+        list: [],
+        loading: false,
+        error: false
+    });
 
     //const [manga, setManga] = useState({});
     //const [chapterIdList, setChapterIdList] = useState([]);
@@ -16,11 +21,26 @@ export const Manga = () => {
     const { getMangaLanguage } = useLanguage();
 
     useEffect(() => {
+        setMangasList({
+            list: [],
+            loading: true,
+            error: false
+        });
         getMangaConMasRanting()
             .then((e) => {
-                setMangasList(e.data.data.map((e) => getMangaLanguage(e)));
+                setMangasList({
+                    list: e.data.data.map((e) => getMangaLanguage(e)),
+                    loading: false,
+                    error: false
+                });
             })
-            .catch((error) => error);
+            .catch(() =>
+                setMangasList({
+                    list: [],
+                    loading: false,
+                    error: true
+                })
+            );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -70,9 +90,12 @@ export const Manga = () => {
     return (
         <>
             <Navigation />
-            {mangasList.map((e) => (
-                <Card manga={e} key={e.id} />
-            ))}
+            <Section
+                title="Más Recientes"
+                mangasList={mangasList.list}
+                loading={mangasList.loading}
+                error={mangasList.error}
+            />
         </>
     );
 };
