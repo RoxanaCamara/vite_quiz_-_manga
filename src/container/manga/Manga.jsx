@@ -4,6 +4,7 @@ import { useServiceManga } from '../../service/useServiceManga';
 
 import { useLanguage } from '../../hooks/useLanguage';
 import { Section } from '../../components/section/Section';
+import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';
 
 export const Manga = () => {
     //const [login, setLogin] = useState({});
@@ -13,6 +14,8 @@ export const Manga = () => {
         error: false
     });
 
+    const { getEndpointGestor } = useGestorLoadingErrorResponse();
+
     //const [manga, setManga] = useState({});
     //const [chapterIdList, setChapterIdList] = useState([]);
     //const [pageIdList, setPageIdList] = useState({});
@@ -21,26 +24,11 @@ export const Manga = () => {
     const { getMangaLanguage } = useLanguage();
 
     useEffect(() => {
-        setMangasList({
-            list: [],
-            loading: true,
-            error: false
-        });
-        getMangaConMasRanting()
-            .then((e) => {
-                setMangasList({
-                    list: e.data.data.map((e) => getMangaLanguage(e)),
-                    loading: false,
-                    error: false
-                });
-            })
-            .catch(() =>
-                setMangasList({
-                    list: [],
-                    loading: false,
-                    error: true
-                })
-            );
+        getEndpointGestor(
+            getMangaConMasRanting(),
+            getMangaLanguage,
+            setMangasList
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -92,7 +80,7 @@ export const Manga = () => {
             <Navigation />
             <Section
                 title="Más Recientes"
-                mangasList={mangasList.list}
+                mangasList={mangasList.resp}
                 loading={mangasList.loading}
                 error={mangasList.error}
             />

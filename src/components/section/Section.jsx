@@ -1,4 +1,4 @@
-import { Card } from '../card/Card';
+import { CardLogic } from '../../modules/cardLogic/CardLogic';
 import { LoadingErrorComponent } from '../loadingErrorComponent/LoadingErrorComponent';
 
 export const Section = ({ title, mangasList, loading, error }) => {
@@ -9,9 +9,9 @@ export const Section = ({ title, mangasList, loading, error }) => {
                 <div className="container text-center">
                     <div className="row">
                         <LoadingErrorComponent loading={loading} error={error}>
-                            {mangasList.map((e) => (
-                                <Card manga={e} key={e.id} />
-                            ))}
+                            {mangasList && (
+                                <CardLogic mangasList={mangasList} />
+                            )}
                         </LoadingErrorComponent>
                     </div>
                 </div>

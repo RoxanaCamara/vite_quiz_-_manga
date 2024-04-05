@@ -25,6 +25,19 @@ export const useServiceManga = () => {
         }
     });
 
+    const getMangaId = async (id) => {
+        return await instance
+            .get('/manga', {
+                params: {
+                    id
+                }
+            })
+            .then((e) => {
+                return e;
+            })
+            .catch((error) => error);
+    };
+
     /**Obtengo informacion de los mangas segun el title */
     const getManga = async (title) => {
         return await instance
@@ -103,6 +116,7 @@ export const useServiceManga = () => {
     return {
         postLogin,
         getManga,
+        getMangaId,
         getIdsChapters,
         getIdsPages,
         getPageImage,
