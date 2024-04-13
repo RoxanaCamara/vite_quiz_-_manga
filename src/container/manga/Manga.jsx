@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
 import { useServiceManga } from '../../service/useServiceManga';
-
 import { useLanguage } from '../../hooks/useLanguage';
 import { Section } from '../../components/section/Section';
 import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';

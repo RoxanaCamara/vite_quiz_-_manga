@@ -1,14 +1,25 @@
 export const LoadingErrorComponent = ({ loading, error, children }) => {
+    console.log(
+        '🚀 ----------------------------------------------------------------------------------------------------------------------🚀'
+    );
+    console.log(
+        '🚀 ~ file: LoadingErrorComponent.jsx:3 ~ LoadingErrorComponent ~  loading, error, children:',
+        loading,
+        error
+    );
+    console.log(
+        '🚀 ----------------------------------------------------------------------------------------------------------------------🚀'
+    );
+
     return (
         <>
-            {loading && (
+            {loading ? (
                 <div className="text-center">
                     <div className="spinner-border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
-            )}
-            {error && (
+            ) : error ? (
                 <div className="card text-center">
                     <div className="card-header">Error</div>
                     <div className="card-body">
@@ -24,8 +35,9 @@ export const LoadingErrorComponent = ({ loading, error, children }) => {
                         2 days ago
                     </div>
                 </div>
+            ) : (
+                children && children
             )}
-            {!loading && !error && children}
         </>
     );
 };

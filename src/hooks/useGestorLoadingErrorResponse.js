@@ -2,22 +2,19 @@ export const useGestorLoadingErrorResponse = () => {
     const setResponse = (resp) => {
         return { loading: false, error: false, resp };
     };
-    const setLoading = () => {
-        return { loading: false, error: false, resp: null };
-    };
-    const setError = () => {
-        return { loading: false, error: false, resp: null };
-    };
+    const LOADING = { loading: true, error: false, resp: null };
+
+    const ERROR = { loading: false, error: true, resp: null };
 
     const getEndpointGestor = async (getEndpoint, getConvertidor, setValue) => {
-        setLoading();
+        setValue(LOADING);
         await getEndpoint
             .then((resp) => {
                 setValue(
                     setResponse(resp.data.data.map((e) => getConvertidor(e)))
                 );
             })
-            .catch(() => setError());
+            .catch(() => setValue(ERROR));
     };
 
     return { getEndpointGestor };

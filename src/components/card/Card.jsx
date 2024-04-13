@@ -1,8 +1,4 @@
-export const Card = ({ description, title, abrirPageWeb, id }) => {
-    console.log('🚀 --------------------------------------🚀');
-    console.log('🚀 ~ file: Card.jsx:3 ~ Card ~ id:', id);
-    console.log('🚀 --------------------------------------🚀');
-
+export const Card = ({ description, title, openPageWeb, id }) => {
     return (
         <div className="card m-2" style={{ width: '18rem' }}>
             <img src="..." className="card-img-top" alt="..."></img>
@@ -12,7 +8,7 @@ export const Card = ({ description, title, abrirPageWeb, id }) => {
                 <a
                     href="#"
                     className="btn btn-primary"
-                    onClick={() => abrirPageWeb(id)}
+                    onClick={() => openPageWeb(id)}
                 >
                     Read manga
                 </a>
