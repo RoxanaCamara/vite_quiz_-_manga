@@ -8,7 +8,7 @@ import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingError
 export const Manga = () => {
     //const [login, setLogin] = useState({});
     const [mangasList, setMangasList] = useState({
-        list: [],
+        resp: [],
         loading: false,
         error: false
     });

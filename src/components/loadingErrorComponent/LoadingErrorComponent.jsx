@@ -1,16 +1,4 @@
 export const LoadingErrorComponent = ({ loading, error, children }) => {
-    console.log(
-        '🚀 ----------------------------------------------------------------------------------------------------------------------🚀'
-    );
-    console.log(
-        '🚀 ~ file: LoadingErrorComponent.jsx:3 ~ LoadingErrorComponent ~  loading, error, children:',
-        loading,
-        error
-    );
-    console.log(
-        '🚀 ----------------------------------------------------------------------------------------------------------------------🚀'
-    );
-
     return (
         <>
             {loading ? (

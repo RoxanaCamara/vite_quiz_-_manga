@@ -1,10 +1,9 @@
-//import { useState } from 'react';
 import { Card } from '../../components/card/Card';
+import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';
+import { useServiceManga } from '../../service/useServiceManga';
 
-export const CardLogic = ({ mangasList }) => {
-  
-
-    /*const { getCoverImageManga } = useServiceManga();
+export const CardLogic = ({ manga }) => {
+    const { getCoverImageManga } = useServiceManga();
     const { getEndpointGestor } = useGestorLoadingErrorResponse();
     const { getMangaId } = useServiceManga();
 
@@ -22,18 +21,16 @@ export const CardLogic = ({ mangasList }) => {
             (e) => console.log(e),
             (e) => console.log(e)
         );
-    };*/
+    };
 
     return (
         <>
-            {mangasList.map((e) => (
-                <Card
-                    manga={e}
-                    key={e.id}
-                    //  openPageWeb={openPageWeb}
-                    // viewCoverArt={viewCoverArt}
-                />
-            ))}
+            <Card
+                manga={manga}
+                key={manga.id}
+                openPageWeb={openPageWeb}
+                viewCoverArt={viewCoverArt}
+            />
         </>
     );
 };
