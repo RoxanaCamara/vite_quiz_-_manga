@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card } from '../../components/card/Card';
 import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';
 import { useServiceManga } from '../../service/useServiceManga';
@@ -22,6 +23,11 @@ export const CardLogic = ({ manga }) => {
             (e) => console.log(e)
         );
     };
+
+    useEffect(() => {
+        manga && viewCoverArt(manga.id, manga.idCoverArt);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [manga]);
 
     return (
         <>
