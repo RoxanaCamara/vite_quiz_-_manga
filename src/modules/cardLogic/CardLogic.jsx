@@ -1,9 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../../components/card/Card';
 import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';
 import { useServiceManga } from '../../service/useServiceManga';
 
 export const CardLogic = ({ manga }) => {
+    const [coverImage, setCoverImage] = useState({
+        resp: [],
+        loading: true,
+        error: false
+    });
+
     const { getCoverImageManga } = useServiceManga();
     const { getEndpointGestor } = useGestorLoadingErrorResponse();
     const { getMangaId } = useServiceManga();
@@ -16,11 +22,11 @@ export const CardLogic = ({ manga }) => {
         );
     };
 
-    const viewCoverArt = (idManga, idCoverArt) => {
+    const viewCoverArt = (idCoverArt) => {
         getEndpointGestor(
-            getCoverImageManga(idManga, idCoverArt),
-            (e) => console.log(e),
-            (e) => console.log(e)
+            getCoverImageManga(idCoverArt),
+            (e) => e,
+            setCoverImage
         );
     };
 
@@ -34,6 +40,7 @@ export const CardLogic = ({ manga }) => {
             <Card
                 manga={manga}
                 key={manga.id}
+                coverImage={coverImage}
                 openPageWeb={openPageWeb}
                 viewCoverArt={viewCoverArt}
             />

@@ -104,9 +104,9 @@ export const useServiceManga = () => {
             .catch((error) => error);
     };
 
-    const getCoverImageManga = async (idManga, idCover) => {
+    const getCoverImageManga = async (idCover) => {
         return await instance
-            .get(`https://uploads.mangadex.org/covers/${idManga}/${idCover}`)
+            .get(`https://uploads.mangadex.org/cover/${idCover}`)
             .then((e) => {
                 return e;
             })
