@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Navigation } from '../../components/navigation/Navigation';
 import { useServiceManga } from '../../service/useServiceManga';
-import { useLanguage } from '../../hooks/useLanguage';
+
 import { Section } from '../../components/section/Section';
 import { useGestorLoadingErrorResponse } from '../../hooks/useGestorLoadingErrorResponse';
+import { useConvert } from '../../hooks/useConvert';
 
 export const Manga = () => {
     //const [login, setLogin] = useState({});
     const [mangasList, setMangasList] = useState({
         resp: [],
-        loading: false,
+        loading: true,
         error: false
     });
 
@@ -20,12 +21,12 @@ export const Manga = () => {
     //const [pageIdList, setPageIdList] = useState({});
 
     const { getMangaConMasRanting } = useServiceManga();
-    const { getMangaLanguage } = useLanguage();
+    const { getConvertDataMangas } = useConvert();
 
     useEffect(() => {
         getEndpointGestor(
             getMangaConMasRanting(),
-            getMangaLanguage,
+            getConvertDataMangas,
             setMangasList
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
